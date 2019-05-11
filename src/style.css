@@ -26,7 +26,7 @@
 }
 
 /* The following styles are for older browsers when using
-   the polyfill. These aren’t necessary for Chrome/Firefox. */
+   the polyfill. These aren't necessary for Chrome/Firefox. */
 #podlinkModal {
     display: none;
     position: absolute;
