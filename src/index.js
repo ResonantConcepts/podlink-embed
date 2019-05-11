@@ -1,4 +1,4 @@
-import Styles from './style.css';
+import Styles from './modal.css';
 import dialogPolyfill from "dialog-polyfill";
 import diabolical from "./diabolical.js";
 
