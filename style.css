@@ -1,0 +1,107 @@
+#podlinkModal {
+    padding: 0;
+    border: 0;
+    background-color: #f7f7f7;
+    border: 1px solid #dbdbdb;
+    border-radius: 2px;
+}
+
+/* native backdrop */
+#podlinkModal::backdrop {
+    background-color: hsla(0, 0%, 6%, .6);
+}
+
+/* polyfill backdrop */
+#podlinkModal+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 6%, .6);
+}
+
+#podlinkModal[open] {
+    animation: slide-up 0.4s ease-out;
+}
+
+/* The following styles are for older browsers when using
+   the polyfill. These aren’t necessary for Chrome/Firefox. */
+#podlinkModal {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    /* should center it, but not working in Safari */
+    max-width: 80vw;
+    background-color: white;
+}
+
+#podlinkModal[open] {
+    display: block;
+}
+
+
+#podlinkModalHeader {
+    margin: 0;
+    padding: 1em;
+    border-bottom: 1px solid hsla(0,0%,6%,.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#podlinkModalHeader h2 {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+#podlinkModalClose {
+    padding: 0;
+    line-height: 1;
+    background-color: transparent;
+    border: 0;
+    text-transform: uppercase;
+}
+
+#podlinkModalBody {
+    position: relative;
+    height: 500px;
+    max-height: 80vh;
+    width: 576px;
+    max-width: 100%;
+}
+
+@media screen and (min-width:30rem) {
+    #podlinkModalBody {
+        height: 300px;
+    }
+}
+
+@media screen and (min-width:36rem) {
+    #podlinkModalBody {
+        height: 220px;
+    }
+}
+
+#podlinkModalIframe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translate(0, 15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
