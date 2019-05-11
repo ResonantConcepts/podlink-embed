@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
-  mode: 'none',
+  mode: 'production',
   module: {
     rules: [
       {
