@@ -8,7 +8,8 @@ import diabolical from "./diabolical.js";
   let podlinks = document.querySelectorAll('a[href^="https://pod.link"]');
   podlinks.forEach(function(elem) {
     elem.addEventListener("click", () => {
-      podlinkModalIframe.src = elem.getAttribute("href") + "/modal";
+      const href = elem.getAttribute("href")
+      podlinkModalIframe.src = href.substring(0, str.lastIndexOf('?')) + "/modal" + href.substring(str.lastIndexOf('?'));
       event.preventDefault();
       podlinkModal.showModal();
     });
@@ -28,6 +29,4 @@ import diabolical from "./diabolical.js";
       podlinkModal.close("cancelled");
     }
   });
-
-
 })();
