@@ -9,7 +9,7 @@ import diabolical from "./diabolical.js";
   podlinks.forEach(function(elem) {
     elem.addEventListener("click", () => {
       const href = elem.getAttribute("href")
-      podlinkModalIframe.src = href.substring(0, str.lastIndexOf('?')) + "/modal" + href.substring(str.lastIndexOf('?'));
+      podlinkModalIframe.src = href.substring(0, href.lastIndexOf('?')) + "/modal" + href.substring(href.lastIndexOf('?'));
       event.preventDefault();
       podlinkModal.showModal();
     });
