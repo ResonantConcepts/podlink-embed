@@ -1,9 +1,8 @@
 import Styles from './modal.css';
-import dialogPolyfill from "dialog-polyfill";
 import diabolical from "./diabolical.js";
 
 (function() {
-  dialogPolyfill.registerDialog(podlinkModal);
+  if (typeof HTMLDialogElement === 'function') {
 
   let podlinks = document.querySelectorAll('a[href^="https://pod.link"]');
   podlinks.forEach(function(elem) {
@@ -29,4 +28,5 @@ import diabolical from "./diabolical.js";
       podlinkModal.close("cancelled");
     }
   });
+  }
 })();
