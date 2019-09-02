@@ -15,21 +15,20 @@ import diabolical from "./diabolical.js";
         podlinkModal.showModal();
       });
     });
-  });
-
-  podlinkModalClose.addEventListener("click", () => {
-    podlinkModal.close("cancelled");
-  });
-
-  podlinkModal.addEventListener("cancel", () => {
-    podlinkModal.close("cancelled");
-  });
-
-  // close when clicking on backdrop
-  podlinkModal.addEventListener("click", event => {
-    if (event.target === podlinkModal) {
+  
+    podlinkModalClose.addEventListener("click", () => {
       podlinkModal.close("cancelled");
-    }
-  });
+    });
+  
+    podlinkModal.addEventListener("cancel", () => {
+      podlinkModal.close("cancelled");
+    });
+  
+    // close when clicking on backdrop
+    podlinkModal.addEventListener("click", event => {
+      if (event.target === podlinkModal) {
+        podlinkModal.close("cancelled");
+      }
+    });
   }
 })();
