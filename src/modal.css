@@ -1,6 +1,5 @@
 #podlinkModal {
     padding: 0;
-    border: 0;
     border: 1px solid #dbdbdb;
     border-radius: 2px;
     background-color: #f7f7f7;
@@ -39,7 +38,6 @@
 #podlinkModal[open] {
     display: block;
 }
-
 
 #podlinkModalHeader {
     display: flex;
