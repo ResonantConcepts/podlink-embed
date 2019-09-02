@@ -1,9 +1,9 @@
 #podlinkModal {
     padding: 0;
     border: 0;
-    background-color: #f7f7f7;
     border: 1px solid #dbdbdb;
     border-radius: 2px;
+    background-color: #f7f7f7;
 }
 
 /* native backdrop */
@@ -28,11 +28,11 @@
 /* The following styles are for older browsers when using
    the polyfill. These aren't necessary for Chrome/Firefox. */
 #podlinkModal {
-    display: none;
     position: absolute;
-    margin: 0 auto;
+    display: none;
     /* should center it, but not working in Safari */
     max-width: 80vw;
+    margin: 0 auto;
     background-color: white;
 }
 
@@ -42,34 +42,34 @@
 
 
 #podlinkModalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 0;
     padding: 1em;
     border-bottom: 1px solid hsla(0,0%,6%,.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 #podlinkModalHeader h2 {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
     margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
     font-size: 1.5rem;
 }
 
 #podlinkModalClose {
     padding: 0;
-    line-height: 1;
-    background-color: transparent;
-    border: 0;
     text-transform: uppercase;
+    border: 0;
+    background-color: transparent;
+    line-height: 1;
 }
 
 #podlinkModalBody {
     position: relative;
-    height: 500px;
-    max-height: 80vh;
     width: 576px;
     max-width: 100%;
+    height: 500px;
+    max-height: 80vh;
 }
 
 @media screen and (min-width:30rem) {
@@ -96,12 +96,12 @@
 
 @keyframes slide-up {
     0% {
-        opacity: 0;
         transform: translate(0, 15px);
+        opacity: 0;
     }
 
     100% {
-        opacity: 1;
         transform: translate(0, 0);
+        opacity: 1;
     }
 }
