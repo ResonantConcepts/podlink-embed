@@ -1,8 +1,11 @@
 #podlinkModal {
     padding: 0;
-    border: 1px solid #dbdbdb;
-    border-radius: 2px;
-    background-color: #f7f7f7;
+    border: none;
+    border-radius: .25rem;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 30rem;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
 }
 
 /* native backdrop */
@@ -10,29 +13,8 @@
     background-color: hsla(0, 0%, 6%, .6);
 }
 
-/* polyfill backdrop */
-#podlinkModal+.backdrop {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: hsla(0, 0%, 6%, .6);
-}
-
 #podlinkModal[open] {
     animation: slide-up 0.4s ease-out;
-}
-
-/* The following styles are for older browsers when using
-   the polyfill. These aren't necessary for Chrome/Firefox. */
-#podlinkModal {
-    position: absolute;
-    display: none;
-    /* should center it, but not working in Safari */
-    max-width: 80vw;
-    margin: 0 auto;
-    background-color: white;
 }
 
 #podlinkModal[open] {
@@ -45,12 +27,11 @@
     justify-content: space-between;
     margin: 0;
     padding: 1em;
-    border-bottom: 1px solid hsla(0,0%,6%,.1);
+    color: #000;
 }
 
 #podlinkModalHeader h2 {
     margin: 0;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
     font-size: 1.5rem;
 }
 
@@ -60,28 +41,34 @@
     border: 0;
     background-color: transparent;
     line-height: 1;
+    color: #000;
 }
 
-#podlinkModalBody {
-    position: relative;
-    width: 200px;
-    max-width: 100%;
-    height: 500px;
-    max-height: 80vh;
+#podlinkModalGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+    padding: 1rem;
 }
 
-@media screen and (min-width:368px) {
-    #podlinkModalBody {
-        width: 368px;
-        height: 300px;
-    }
+#podlinkModalGrid a {
+    display: flex;
+    place-items: center;
+    gap: 1rem;
+    color: #000;
+    text-decoration: none;
+    border-radius: 1rem;
+    transition: 0.2s ease;
 }
 
-@media screen and (min-width:536px) {
-    #podlinkModalBody {
-        width: 536px;
-        height: 220px;
-    }
+#podlinkModalGrid a:hover, #podlinkModalGrid a:focus-visible {
+    background: hsla(0,0%,6%,.1);
+    outline: none;
+}
+
+#podlinkModalGrid a img {
+    display: block;
+    width: 3rem;
 }
 
 #podlinkModalIframe {
@@ -96,12 +83,34 @@
 
 @keyframes slide-up {
     0% {
-        transform: translate(0, 15px);
+        transform: translate(0, 1rem);
         opacity: 0;
     }
 
     100% {
         transform: translate(0, 0);
         opacity: 1;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    #podlinkModal {
+        background-color: #000;
+    }
+
+    #podlinkModalHeader {
+        color: #FFF;
+    }
+
+    #podlinkModalClose {
+        color: #FFF;
+    }
+
+    #podlinkModalGrid a {
+        color: #FFF;
+    }
+
+    #podlinkModalGrid a:hover, #podlinkModalGrid a:focus-visible {
+        background: hsla(0,0%,94%,.1);
     }
 }

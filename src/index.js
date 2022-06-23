@@ -5,13 +5,14 @@ import diabolical from "./diabolical.js";
   if (typeof HTMLDialogElement === 'function') {
     let podlinks = document.querySelectorAll('a[href^="https://pod.link"]');
     podlinks.forEach(function(elem) {
-      const href = new URL(elem.getAttribute("href"));
-      const dataValue = href.origin + href.pathname + "/modal" + href.search;
-      elem.setAttribute('data-modal', dataValue);
-
-      elem.addEventListener("click", () => {
-        podlinkModalIframe.src = elem.getAttribute("data-modal");
+      elem.addEventListener("click", event => {
         event.preventDefault();
+        let href = new URL(elem.getAttribute("href"));
+        let badges = document.querySelectorAll('#podlinkModalGrid a');
+        badges.forEach(function(badge) {
+          badge.setAttribute("href", `${href.origin}/${href.pathname.split('/')[1]}.${badge.getAttribute("id")}`);
+        }
+        );
         podlinkModal.showModal();
       });
     });
