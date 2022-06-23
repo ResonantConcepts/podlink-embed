@@ -4,7 +4,7 @@ Adding podlink as a modal to your site
 ## Usage
 Insert the following script on any page of your site 
 ```
-<script src="https://resonantconcepts.github.io/podlink-embed/dist/main.js"></script>
+<script src="https://podlink-embed.netlify.app/main.js"></script>
 ```
 
 <picture>
