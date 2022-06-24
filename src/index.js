@@ -7,10 +7,13 @@ import diabolical from "./diabolical.js";
     podlinks.forEach(function(elem) {
       elem.addEventListener("click", event => {
         event.preventDefault();
-        let href = new URL(elem.getAttribute("href"));
+        let podlink = new URL(elem.href);
         let badges = document.querySelectorAll('#podlinkModalGrid a');
         badges.forEach(function(badge) {
-          badge.setAttribute("href", `${href.origin}/${href.pathname.split('/')[1]}.${badge.getAttribute("id")}`);
+          let redirect = new URL(`${podlink.origin}/${ podlink.pathname.split('/')[1]}.${badge.id}`);
+          let params = new URLSearchParams(podlink.searchParams);
+          redirect.search = params.toString();
+          badge.setAttribute("href", redirect.href);
         }
         );
         podlinkModal.showModal();
