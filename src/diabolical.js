@@ -45,15 +45,15 @@ let platforms = [
 ]
 
 platforms.forEach(element => {
-let podlinkModalGridItem = document.createElement("a");
-podlinkModalGridItem.setAttribute("href", "#");
-podlinkModalGridItem.setAttribute("id", element.slug);
-podlinkModalGrid.appendChild(podlinkModalGridItem);
+let podlinkModalLink = document.createElement("a");
+podlinkModalLink.setAttribute("href", "#");
+podlinkModalLink.setAttribute("id", element.slug);
+podlinkModalGrid.appendChild(podlinkModalLink);
 
-let podlinkModalGridImage = document.createElement("img");
-podlinkModalGridImage.setAttribute("src", `https://pod.link/assets/apps/${element.slug}.svg`);
-podlinkModalGridImage.setAttribute("alt", element.name);
-podlinkModalGridImage.setAttribute("id", "podlinkModalGridImage");
-podlinkModalGridItem.appendChild(podlinkModalGridImage);
-podlinkModalGridItem.appendChild(document.createTextNode(element.name));
+let podlinkModalImage = document.createElement("img");
+podlinkModalImage.setAttribute("src", `https://pod.link/assets/apps/${element.slug}.svg`);
+podlinkModalImage.setAttribute("alt", element.name);
+podlinkModalImage.setAttribute("id", "podlinkModalImage");
+podlinkModalLink.appendChild(podlinkModalImage);
+podlinkModalLink.appendChild(document.createTextNode(element.name));
 });

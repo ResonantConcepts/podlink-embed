@@ -1,18 +1,18 @@
 #podlinkModal {
-    padding: 0;
-    border: none;
-    border-radius: .25rem;
-    background-color: #FFF;
-    width: 26rem;
-    max-width: calc(100vw - 2rem);
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
     --primary: #000;
+    background-color: #FFF;
+    border-radius: .25rem;
+    border: none;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+    max-width: calc(100vw - 2rem);
+    padding: 0;
+    width: 26rem;
 }
 
 @media (prefers-color-scheme: dark) {
     #podlinkModal {
-        background-color: #000;
         --primary: #FFF;
+        background-color: #000;
     }
 }
 
@@ -30,29 +30,29 @@
 }
 
 #podlinkModalHeader {
-    display: flex;
     align-items: center;
+    color: var(--primary);
+    display: flex;
     justify-content: space-between;
     margin: 0;
-    color: var(--primary);
 }
 
 #podlinkModalHeader h2 {
-    margin: 0;
     font-size: 1.5rem;
     line-height: 1;
+    margin: 0;
     padding: 1rem;
 }
 
 #podlinkModalClose {
+    background-color: transparent;
+    border-radius: 0;
+    border: 0;
+    color: var(--primary);
+    font-size: 1.5rem;
+    line-height: 1;
     padding: 1rem;
     text-transform: uppercase;
-    border: 0;
-    background-color: transparent;
-    line-height: 1;
-    color: var(--primary);
-    border-radius: 0;
-    font-size: 1.5rem;
 }
 
 #podlinkModalClose:focus-visible {
@@ -61,20 +61,20 @@
 
 #podlinkModalGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
     gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
     padding: 1rem;
 }
 
 #podlinkModalGrid a {
-    display: flex;
-    place-items: center;
-    gap: 0.5rem;
-    color: var(--primary);
-    text-decoration: none;
     border-radius: 1rem;
-    transition: 0.2s ease;
+    color: var(--primary);
+    display: flex;
     font-size: 1rem;
+    gap: 0.5rem;
+    place-items: center;
+    text-decoration: none;
+    transition: 0.2s ease;
 }
 
 #podlinkModal a:hover img, #podlinkModal a:focus-visible img {
@@ -83,25 +83,25 @@
 
 #podlinkModal a:focus-visible {
     outline-color: var(--primary);
+    outline-offset: .25rem;
     outline-style: solid;
     outline-width: .125rem;
-    outline-offset: .25rem;
 }
 
-#podlinkModalGrid a img {
+#podlinkModalImage {
     display: block;
-    width: 3rem;
     transition: all 0.3s ease;
+    width: 3rem;
 }
 
 @keyframes slide-up {
     0% {
-        transform: translate(0, 1rem);
         opacity: 0;
+        transform: translate(0, 1rem);
     }
 
     100% {
-        transform: translate(0, 0);
         opacity: 1;
+        transform: translate(0, 0);
     }
 }
