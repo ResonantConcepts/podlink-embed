@@ -35,7 +35,7 @@ let platforms = [
 {slug: "pocketcasts", name: "Pocket Casts"},
 {slug: "castbox", name: "Castbox"},
 {slug: "stitcher", name: "Stitcher"},
-// {slug: 'podbean',name: 'Podbean'},
+// {slug: 'podbean', name: 'Podbean'},
 {slug: "iheartradio", name: "iHeartRadio"},
 {slug: "playerfm", name: "Player FM"},
 // {slug: "podcastrepublic", name: "Podcast Republic"},
@@ -51,9 +51,10 @@ podlinkModalLink.setAttribute("id", element.slug);
 podlinkModalGrid.appendChild(podlinkModalLink);
 
 let podlinkModalImage = document.createElement("img");
-podlinkModalImage.setAttribute("src", `https://pod.link/assets/apps/${element.slug}.svg`);
+podlinkModalImage.setAttribute("src", `https://podlink-embed.netlify.app/assets/${element.slug}.svg`);
 podlinkModalImage.setAttribute("alt", element.name);
 podlinkModalImage.setAttribute("id", "podlinkModalImage");
+podlinkModalImage.setAttribute("aria-hidden", "true");
 podlinkModalLink.appendChild(podlinkModalImage);
 podlinkModalLink.appendChild(document.createTextNode(element.name));
 });
