@@ -10,14 +10,15 @@ podlinkModal.appendChild(podlinkModalHeader);
 
 // create the heading and append to the header 
 let podlinkModalH2 = document.createElement("h2");
-podlinkModalH2.appendChild(document.createTextNode("Listen On..."));
+podlinkModalH2.innerHTML = "Listen On&#8230;";
 podlinkModalHeader.appendChild(podlinkModalH2);
 
-// create the close button  and append to the header 
+// create the close button and append to the header 
 let podlinkModalClose = document.createElement("button");
 podlinkModalClose.setAttribute("type", "button");
 podlinkModalClose.setAttribute("id", "podlinkModalClose");
-podlinkModalClose.appendChild(document.createTextNode("Close"));
+podlinkModalClose.setAttribute("aria-label", "Close");
+podlinkModalClose.innerHTML = "&#10005;";
 podlinkModalHeader.appendChild(podlinkModalClose);
 
 //create the Grid and append to the dialog
@@ -52,9 +53,7 @@ podlinkModalGrid.appendChild(podlinkModalGridItem);
 let podlinkModalGridImage = document.createElement("img");
 podlinkModalGridImage.setAttribute("src", `https://pod.link/assets/apps/${element.slug}.svg`);
 podlinkModalGridImage.setAttribute("alt", element.name);
+podlinkModalGridImage.setAttribute("id", "podlinkModalGridImage");
 podlinkModalGridItem.appendChild(podlinkModalGridImage);
-
-let podlinkModalGridSpan = document.createElement("span");
-podlinkModalGridSpan.appendChild(document.createTextNode(element.name));
-podlinkModalGridItem.appendChild(podlinkModalGridSpan);
+podlinkModalGridItem.appendChild(document.createTextNode(element.name));
 });
