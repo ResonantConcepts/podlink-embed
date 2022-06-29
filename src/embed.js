@@ -12,7 +12,7 @@ const redirectURL = (href, app) => {
 }
 
 const badges = (apps, href) => {
-  apps.forEach(app => {
+  for (let app of apps) {
     let podlinkBadge = document.createElement("a");
     podlinkBadge.setAttribute("href", redirectURL(href, app.slug));
     podlinkBadge.setAttribute("class", "podlinkBadge");
@@ -35,22 +35,22 @@ const badges = (apps, href) => {
         setCookie('podlink', app.slug, {secure: true, 'max-age': (60 * 60 * 24 * 365)});
       }
     })
-  });
+  };
 }
 
 (function() {
   let podlinks = document.querySelectorAll('a[href^="https://pod.link"]');
   let cookie = getCookie("podlink");
   if (cookie) {
-    podlinks.forEach(function(elem) {
+    for (let elem of podlinks) {
       let app = apps.find(app => app.slug === cookie);
       elem.href = redirectURL(elem.href, app.slug);
       elem.innerHTML = `Listen in ${app.name}`;
-    });
+    };
   }
   else {
     dialog();
-    podlinks.forEach(function(elem) {
+    for (let elem of podlinks) {
       elem.setAttribute("aria-label", "Select a podcast app to listen in");
       elem.setAttribute("aria-haspopup", "true");
 
@@ -60,7 +60,7 @@ const badges = (apps, href) => {
         badges(apps, elem.href)
         podlinkModal.showModal();
       });
-    });
+    };
 
     podlinkClose.addEventListener("click", () => {
       podlinkModal.setAttribute("aria-modal", "false");
