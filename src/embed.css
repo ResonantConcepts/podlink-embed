@@ -1,0 +1,128 @@
+#podlinkModal {
+    --primary: #000;
+    background-color: #FFF;
+    border-radius: .25rem;
+    border: none;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+    max-width: calc(100vw - 2rem);
+    padding: 0;
+    width: 26rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    #podlinkModal {
+        --primary: #FFF;
+        background-color: #000;
+    }
+}
+
+/* native backdrop */
+#podlinkModal::backdrop {
+    background-color: hsla(0, 0%, 6%, .6);
+}
+
+#podlinkModal[open] {
+    animation: slide-up 0.4s ease-out;
+}
+
+#podlinkModal[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+#podlinkModalHeader {
+    align-items: center;
+    color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+#podlinkModalHeader h2 {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin: 0;
+    padding: 1rem;
+}
+
+#podlinkModalFooter {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    user-select: none;
+}
+
+#podlinkModalCheckbox {
+    transform: scale(1.5);
+}
+
+label[for="podlinkModalCheckbox"] {
+    color: var(--primary);
+}
+
+#podlinkModalClose {
+    background-color: transparent;
+    border-radius: 0;
+    border: 0;
+    color: var(--primary);
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 1rem;
+    text-transform: uppercase;
+}
+
+#podlinkModalClose:focus-visible {
+    outline-color: var(--primary);
+}
+
+#podlinkModalGrid {
+    display: grid;
+    flex: 1;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    overflow: scroll;
+    padding: 1rem;
+}
+
+#podlinkModalGrid a {
+    all:unset;
+    cursor: pointer;
+    border-radius: 1rem;
+    color: var(--primary);
+    display: flex;
+    font-size: 1rem;
+    gap: 0.5rem;
+    place-items: center;
+    text-decoration: none;
+    transition: 0.2s ease;
+    white-space: nowrap;
+}
+
+#podlinkModal a:hover svg, #podlinkModal a:focus-visible svg {
+    transform: scale(1.125);
+}
+
+#podlinkModal a:focus-visible {
+    outline-color: var(--primary);
+    outline-offset: .25rem;
+    outline-style: solid;
+    outline-width: .125rem;
+}
+
+#podlinkModalGrid svg {
+    display: block;
+    transition: all 0.3s ease;
+    width: 3rem;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translate(0, 1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}

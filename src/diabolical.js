@@ -1,10 +1,26 @@
+import Apple from "./assets/apple.svg"
+import Spotify from "./assets/spotify.svg"
+import Google from "./assets/google.svg"
+import Overcast from "./assets/overcast.svg"
+import PodcastAddict from "./assets/podcastaddict.svg"
+import PocketCasts from "./assets/pocketcasts.svg"
+import Castbox from "./assets/castbox.svg"
+import Stitcher from "./assets/stitcher.svg"
+import Podbean from "./assets/podbean.svg"
+import IHeartRadio from "./assets/iheartradio.svg"
+import PlayerFM from "./assets/playerfm.svg"
+import PodcastRepublic from "./assets/podcastrepublic.svg"
+import Castro from "./assets/castro.svg"
+import RadioPublic from "./assets/radiopublic.svg"
+import RSS from "./assets/rss.svg"
+
 // create the dialog and append to the body
 let podlinkModal = document.createElement("dialog");
 podlinkModal.setAttribute("id", "podlinkModal");
 document.body.appendChild(podlinkModal);
 
 // create the header and append to the dialog
-let podlinkModalHeader = document.createElement("div");
+let podlinkModalHeader = document.createElement("header");
 podlinkModalHeader.setAttribute("id", "podlinkModalHeader");
 podlinkModal.appendChild(podlinkModalHeader);
 
@@ -26,22 +42,38 @@ let podlinkModalGrid = document.createElement("div");
 podlinkModalGrid.setAttribute("id", "podlinkModalGrid");
 podlinkModal.appendChild(podlinkModalGrid);
 
+// create the Footer and append to the dialog
+let podlinkModalFooter = document.createElement("footer");
+podlinkModalFooter.setAttribute("id", "podlinkModalFooter");
+podlinkModal.appendChild(podlinkModalFooter);
+
+let podlinkModalCheckbox = document.createElement("input");
+podlinkModalCheckbox.setAttribute("type", "checkbox");
+podlinkModalCheckbox.setAttribute("id", "podlinkModalCheckbox");
+podlinkModalCheckbox.setAttribute("checked", "checked");
+podlinkModalFooter.appendChild(podlinkModalCheckbox);
+
+let podlinkModalLabel = document.createElement("label");
+podlinkModalLabel.setAttribute("for", "podlinkModalCheckbox");
+podlinkModalLabel.innerHTML = "Ask me which app to use every time";
+podlinkModalFooter.appendChild(podlinkModalLabel);
+
 let platforms = [
-{slug: "apple", name: "Apple Podcasts"},
-{slug: "spotify", name: "Spotify"},
-{slug: "google", name: "Google Podcasts"},
-{slug: "overcast", name: "Overcast"},
-{slug: "podcastaddict", name: "Podcast Addict"},
-{slug: "pocketcasts", name: "Pocket Casts"},
-{slug: "castbox", name: "Castbox"},
-{slug: "stitcher", name: "Stitcher"},
-// {slug: 'podbean', name: 'Podbean'},
-{slug: "iheartradio", name: "iHeartRadio"},
-{slug: "playerfm", name: "Player FM"},
-// {slug: "podcastrepublic", name: "Podcast Republic"},
-{slug: "castro", name: "Castro"},
-{slug: "radiopublic", name: "RadioPublic"},
-{slug: "rss", name: "RSS"}
+{slug: "apple", name: "Apple Podcasts", icon: Apple },
+{slug: "spotify", name: "Spotify", icon: Spotify },
+{slug: "google", name: "Google Podcasts", icon: Google },
+{slug: "overcast", name: "Overcast", icon: Overcast },
+{slug: "podcastaddict", name: "Podcast Addict", icon: PodcastAddict },
+{slug: "pocketcasts", name: "Pocket Casts", icon: PocketCasts },
+{slug: "castbox", name: "Castbox", icon: Castbox },
+{slug: "stitcher", name: "Stitcher", icon: Stitcher },
+// {slug: "podbean", name: "Podbean", icon: Podbean },
+{slug: "iheartradio", name: "iHeartRadio", icon: IHeartRadio },
+{slug: "playerfm", name: "Player FM", icon: PlayerFM },
+// {slug: "podcastrepublic", name: "Podcast Republic", icon: PodcastRepublic },
+{slug: "castro", name: "Castro", icon: Castro },
+{slug: "radiopublic", name: "RadioPublic", icon: RadioPublic },
+{slug: "rss", name: "RSS", icon: RSS }
 ]
 
 platforms.forEach(element => {
@@ -50,11 +82,6 @@ podlinkModalLink.setAttribute("href", "#");
 podlinkModalLink.setAttribute("id", element.slug);
 podlinkModalGrid.appendChild(podlinkModalLink);
 
-let podlinkModalImage = document.createElement("img");
-podlinkModalImage.setAttribute("src", `https://podlink-embed.netlify.app/assets/${element.slug}.svg`);
-podlinkModalImage.setAttribute("alt", element.name);
-podlinkModalImage.setAttribute("id", "podlinkModalImage");
-podlinkModalImage.setAttribute("aria-hidden", "true");
-podlinkModalLink.appendChild(podlinkModalImage);
+podlinkModalLink.innerHTML = element.icon;
 podlinkModalLink.appendChild(document.createTextNode(element.name));
 });
