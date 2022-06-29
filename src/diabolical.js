@@ -82,6 +82,11 @@ podlinkModalLink.setAttribute("href", "#");
 podlinkModalLink.setAttribute("id", element.slug);
 podlinkModalGrid.appendChild(podlinkModalLink);
 
-podlinkModalLink.innerHTML = element.icon;
+let podlinkModalImage = document.createElement("img");
+podlinkModalImage.setAttribute("src", element.icon);
+podlinkModalImage.setAttribute("alt", element.name);
+podlinkModalImage.setAttribute("id", "podlinkModalImage");
+podlinkModalImage.setAttribute("aria-hidden", "true");
+podlinkModalLink.appendChild(podlinkModalImage);
 podlinkModalLink.appendChild(document.createTextNode(element.name));
 });
