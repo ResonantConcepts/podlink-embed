@@ -1,39 +1,7 @@
 import Styles from './embed.css';
 import dialog from "./dialog.js";
 import {getCookie, setCookie } from "./cookies.js";
-import Apple from "./assets/apple.svg"
-import Spotify from "./assets/spotify.svg"
-import Google from "./assets/google.svg"
-import Overcast from "./assets/overcast.svg"
-import PodcastAddict from "./assets/podcastaddict.svg"
-import PocketCasts from "./assets/pocketcasts.svg"
-import Castbox from "./assets/castbox.svg"
-import Stitcher from "./assets/stitcher.svg"
-import Podbean from "./assets/podbean.svg"
-import IHeartRadio from "./assets/iheartradio.svg"
-import PlayerFM from "./assets/playerfm.svg"
-import PodcastRepublic from "./assets/podcastrepublic.svg"
-import Castro from "./assets/castro.svg"
-import RadioPublic from "./assets/radiopublic.svg"
-import RSS from "./assets/rss.svg"
-
-let apps = [
-  { slug: "apple", name: "Apple Podcasts", icon: Apple },
-  { slug: "spotify", name: "Spotify", icon: Spotify },
-  { slug: "google", name: "Google Podcasts", icon: Google },
-  { slug: "overcast", name: "Overcast", icon: Overcast },
-  { slug: "podcastaddict", name: "Podcast Addict", icon: PodcastAddict },
-  { slug: "pocketcasts", name: "Pocket Casts", icon: PocketCasts },
-  { slug: "castbox", name: "Castbox", icon: Castbox },
-  { slug: "stitcher", name: "Stitcher", icon: Stitcher },
-  // {slug: "podbean", name: "Podbean", icon: Podbean },
-  { slug: "iheartradio", name: "iHeartRadio", icon: IHeartRadio },
-  { slug: "playerfm", name: "Player FM", icon: PlayerFM },
-  // {slug: "podcastrepublic", name: "Podcast Republic", icon: PodcastRepublic },
-  { slug: "castro", name: "Castro", icon: Castro },
-  { slug: "radiopublic", name: "RadioPublic", icon: RadioPublic },
-  { slug: "rss", name: "RSS", icon: RSS }
-]
+import apps from "./apps.js";
 
 const redirectURL = (href, app) => {
   let url = new URL(href);
@@ -43,28 +11,28 @@ const redirectURL = (href, app) => {
   return redirect.href;
 }
 
-const badges = (platforms, href) => {
-  platforms.forEach(platform => {
-    let podlinkModalLink = document.createElement("a");
-    podlinkModalLink.setAttribute("href", redirectURL(href, platform.slug));
-    podlinkModalLink.setAttribute("id", platform.slug);
-    podlinkModalLink.setAttribute("aria-label", platform.name);
-    podlinkModalGrid.appendChild(podlinkModalLink);
+const badges = (apps, href) => {
+  apps.forEach(app => {
+    let podlinkBadge = document.createElement("a");
+    podlinkBadge.setAttribute("href", redirectURL(href, app.slug));
+    podlinkBadge.setAttribute("class", "podlinkBadge");
+    podlinkBadge.setAttribute("aria-label", app.name);
+    podlinkMain.appendChild(podlinkBadge);
 
-    let podlinkModalImage = document.createElement("img");
-    podlinkModalImage.setAttribute("src", platform.icon);
-    podlinkModalImage.setAttribute("alt", platform.name);
-    podlinkModalImage.setAttribute("id", "podlinkModalImage");
-    podlinkModalImage.setAttribute("aria-hidden", "true");
-    podlinkModalLink.appendChild(podlinkModalImage);
-    podlinkModalLink.appendChild(document.createTextNode(platform.name));
+    let podlinkIcon = document.createElement("img");
+    podlinkIcon.setAttribute("src", app.icon);
+    podlinkIcon.setAttribute("alt", app.name);
+    podlinkIcon.setAttribute("id", "podlinkIcon");
+    podlinkIcon.setAttribute("aria-hidden", "true");
+    podlinkBadge.appendChild(podlinkIcon);
+    podlinkBadge.appendChild(document.createTextNode(app.name));
 
-    podlinkModalLink.addEventListener("click", event => {
-      let podlinkModalCheckbox = document.querySelector('#podlinkModalCheckbox');
-      let isChecked = podlinkModalCheckbox.checked;
+    podlinkBadge.addEventListener("click", event => {
+      let podlinkSwitch = document.querySelector('#podlinkSwitch');
+      let isChecked = podlinkSwitch.checked;
 
       if (!isChecked) {
-        setCookie('podlink', platform.slug, {secure: true, 'max-age': (60 * 60 * 24 * 365)});
+        setCookie('podlink', app.slug, {secure: true, 'max-age': (60 * 60 * 24 * 365)});
       }
     })
   });
@@ -83,24 +51,31 @@ const badges = (platforms, href) => {
   else {
     dialog();
     podlinks.forEach(function(elem) {
+      elem.setAttribute("aria-label", "Select a podcast app to listen in");
+      elem.setAttribute("aria-haspopup", "true");
+
       elem.addEventListener("click", event => {
         event.preventDefault();
+        podlinkModal.setAttribute("aria-modal", "true");
         badges(apps, elem.href)
         podlinkModal.showModal();
       });
     });
 
-    podlinkModalClose.addEventListener("click", () => {
+    podlinkClose.addEventListener("click", () => {
+      podlinkModal.setAttribute("aria-modal", "false");
       podlinkModal.close("cancelled");
     });
 
     podlinkModal.addEventListener("cancel", () => {
+      podlinkModal.setAttribute("aria-modal", "false");
       podlinkModal.close("cancelled");
     });
 
     // close when clicking on backdrop
     podlinkModal.addEventListener("click", event => {
       if (event.target === podlinkModal) {
+        podlinkModal.setAttribute("aria-modal", "false");
         podlinkModal.close("cancelled");
       }
     });

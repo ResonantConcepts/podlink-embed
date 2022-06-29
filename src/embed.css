@@ -30,7 +30,7 @@
     flex-direction: column;
 }
 
-#podlinkModalHeader {
+#podlinkHeader {
     align-items: center;
     color: var(--primary);
     display: flex;
@@ -38,29 +38,29 @@
     margin: 0;
 }
 
-#podlinkModalHeader h2 {
+#podlinkHeading {
     font-size: 1.5rem;
     line-height: 1;
     margin: 0;
     padding: 1rem;
 }
 
-#podlinkModalFooter {
+#podlinkFooter {
     display: flex;
     gap: 1rem;
     padding: 1rem;
     user-select: none;
 }
 
-#podlinkModalCheckbox {
+#podlinkSwitch {
     transform: scale(1.5);
 }
 
-label[for="podlinkModalCheckbox"] {
+label[for="podlinkSwitch"] {
     color: var(--primary);
 }
 
-#podlinkModalClose {
+#podlinkClose {
     background-color: transparent;
     border-radius: 0;
     border: 0;
@@ -71,11 +71,11 @@ label[for="podlinkModalCheckbox"] {
     text-transform: uppercase;
 }
 
-#podlinkModalClose:focus-visible {
+#podlinkClose:focus-visible {
     outline-color: var(--primary);
 }
 
-#podlinkModalGrid {
+#podlinkMain {
     display: grid;
     flex: 1;
     gap: 1rem;
@@ -84,7 +84,7 @@ label[for="podlinkModalCheckbox"] {
     padding: 1rem;
 }
 
-#podlinkModalGrid a {
+#podlinkModal a {
     all:unset;
     cursor: pointer;
     border-radius: 1rem;
@@ -109,7 +109,7 @@ label[for="podlinkModalCheckbox"] {
     outline-width: .125rem;
 }
 
-#podlinkModalImage {
+#podlinkIcon {
     display: block;
     transition: all 0.3s ease;
     width: 3rem;
