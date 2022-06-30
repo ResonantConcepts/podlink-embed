@@ -61,23 +61,5 @@ const badges = (apps, href) => {
         podlinkModal.showModal();
       });
     };
-
-    podlinkClose.addEventListener("click", () => {
-      podlinkModal.setAttribute("aria-modal", "false");
-      podlinkModal.close("cancelled");
-    });
-
-    podlinkModal.addEventListener("cancel", () => {
-      podlinkModal.setAttribute("aria-modal", "false");
-      podlinkModal.close("cancelled");
-    });
-
-    // close when clicking on backdrop
-    podlinkModal.addEventListener("click", event => {
-      if (event.target === podlinkModal) {
-        podlinkModal.setAttribute("aria-modal", "false");
-        podlinkModal.close("cancelled");
-      }
-    });
   }
 })();
