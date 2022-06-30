@@ -11,10 +11,17 @@ const redirectURL = (href, app) => {
   return redirect.href;
 }
 
-const badges = (apps, href) => {
-  for (let app of apps) {
+const badges = (href, override, excluded) => {
+  // map over array of ojects and add property to each object
+  let currentApps = apps.map(app => ({ 
+    ...app, 
+    href: (override[app.slug]) ? override[app.slug] : redirectURL(href, app.slug)
+  }));
+
+  let preferredapps = currentApps.filter(app => !excluded.includes(app.slug));
+  for (let app of preferredapps) {
     let podlinkBadge = document.createElement("a");
-    podlinkBadge.setAttribute("href", redirectURL(href, app.slug));
+    podlinkBadge.setAttribute("href", app.href);
     podlinkBadge.setAttribute("class", "podlinkBadge");
     podlinkBadge.setAttribute("aria-label", app.name);
     podlinkMain.appendChild(podlinkBadge);
@@ -40,26 +47,34 @@ const badges = (apps, href) => {
 
 (function() {
   let podlinks = document.querySelectorAll('a[href^="https://pod.link"]');
-  let cookie = getCookie("podlink");
-  if (cookie) {
-    for (let elem of podlinks) {
+  let cookie = getCookie("podlink")
+  dialog();
+
+  for (let elem of podlinks) {
+    let excluded = elem.getAttribute("data-exclude") ? elem.getAttribute("data-exclude").replace(/\s/g, '').split(',') : [];
+    let override = elem.getAttribute("data-override") ? JSON.parse(elem.getAttribute("data-override")) : {};
+    
+    if (cookie && !excluded.includes(cookie)) {
       let app = apps.find(app => app.slug === cookie);
       elem.href = redirectURL(elem.href, app.slug);
       elem.innerHTML = `Listen in ${app.name}`;
-    };
-  }
-  else {
-    dialog();
-    for (let elem of podlinks) {
-      elem.setAttribute("aria-label", "Select a podcast app to listen in");
-      elem.setAttribute("aria-haspopup", "true");
+    }
+    else {
+      if (apps.length - excluded.length > 0) {
+        elem.setAttribute("aria-label", "Select a podcast app to listen in");
+        elem.setAttribute("aria-haspopup", "true");
 
-      elem.addEventListener("click", event => {
-        event.preventDefault();
-        podlinkModal.setAttribute("aria-modal", "true");
-        badges(apps, elem.href)
-        podlinkModal.showModal();
-      });
-    };
+        elem.addEventListener("click", event => {
+          event.preventDefault();
+          podlinkMain.innerHTML = "";
+          badges(elem.href, override, excluded)
+
+          podlinkModal.setAttribute("aria-modal", "true");
+          podlinkModal.setAttribute("aria-hidden", "false");
+          podlinkModal.showModal();
+          podlinkModal.focus();
+        });
+      }
+    }
   }
 })();
