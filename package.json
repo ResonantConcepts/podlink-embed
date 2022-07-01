@@ -7,7 +7,6 @@
     "build": "webpack --config webpack.prod.js",
     "start": "webpack serve --open --config webpack.dev.js"
   },
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ResonantConcepts/podlink-embed.git"
