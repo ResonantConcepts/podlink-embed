@@ -1,6 +1,8 @@
 {
   "name": "podlink-embed",
   "version": "1.0.0",
+  "description": "Enrich podlinks on your site with a customizable modal",
+  "main": "./dist/embed.bundle.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "start": "webpack serve --open --config webpack.dev.js"
@@ -10,6 +12,16 @@
     "type": "git",
     "url": "git+https://github.com/ResonantConcepts/podlink-embed.git"
   },
+  "keywords": [
+    "podlink",
+    "pod.link",
+    "podcast",
+    "link",
+    "dialog",
+    "embed"
+  ],
+  "author": "Nathan Gathright <hello@nathangathright.com> (https://nathangathright.com/)",
+  "license": "MIT",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
