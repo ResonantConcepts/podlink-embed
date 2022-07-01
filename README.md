@@ -1,5 +1,5 @@
 # podlink-embed
-Adding podlink as a modal to your site
+Enrich podlinks on your site with a customizable modal.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="demo-dark.png">
@@ -7,25 +7,18 @@ Adding podlink as a modal to your site
   <img alt="demo image" src="demo-light.png">
 </picture>
 
+## Features
+* Replaces all links to [pod.link](https://pod.link) with modals
+* Allows visitors to save their preferred app and skip the modal
+* Passes URL parameters, allowing sites to participate in the [Apple Partner Program](https://performance-partners.apple.com/)
+
 ## Installation
-Insert the following script on any page of your site to enrich all podlinks on the page
+Include the following script on all pages of your site with links to [pod.link](https://pod.link)
 ```
 <script src="https://podlink-embed.netlify.app/embed.bundle.js"></script>
 ```
 
-## Usage
-For web visitors, all they need to do is click a link on your webpage to open the podlink modal and select their preferred podcast app. If they uncheck the "Ask me which app to use every time" checkbox, then we’ll remember their selection in a first party cookie. On subsequent visits, if we detect the prescence of that cookie, we’ll  
-
 ## Methods
-podlink-embed supports a simple HTML API accessible by manipulating the properties of each link.
-
-### href
-The embed script detects any and all links pointing to pages on https://pod.link. Any query parameters added to the href will be passed to all the badges. This includes the [Apple Partner Program](https://performance-partners.apple.com/) parameters to earn affiliate commissions on qualifying purchases.
-
-```
-<a href="https://pod.link/vergecast?at=1000lPBj">Listen Now</a>
-```
-
 ### exclude
 If you would like to remove some badges from appearing in the modal for a link, list them within a `data-exclude` attribute seperated by commas.
 ```
@@ -40,7 +33,3 @@ If you would like to include a badge but podlink is redirecting to the wrong URL
   "radiopublic":"https://radiopublic.com/Vergecast"
 }'>Listen Now</a>
 ```
-
-## Roadmap
-* Badge reordering: I haven't figured out the most elegant API just yet
-* Make this repo available as an NPM package:
