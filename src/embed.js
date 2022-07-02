@@ -12,14 +12,13 @@ const redirectURL = (href, app) => {
 }
 
 const badges = (href, override, excluded) => {
-  // map over array of ojects and add property to each object
-  let currentApps = apps.map(app => ({ 
+  let overridden = apps.map(app => ({ 
     ...app, 
     href: (override[app.slug]) ? override[app.slug] : redirectURL(href, app.slug)
   }));
 
-  let preferredapps = currentApps.filter(app => !excluded.includes(app.slug));
-  for (let app of preferredapps) {
+  let visible = overridden.filter(app => !excluded.includes(app.slug));
+  for (let app of visible) {
     let podlinkBadge = document.createElement("a");
     podlinkBadge.setAttribute("href", app.href);
     podlinkBadge.setAttribute("class", "podlinkBadge");
@@ -51,28 +50,31 @@ const badges = (href, override, excluded) => {
   dialog();
 
   for (let elem of podlinks) {
-    let excluded = elem.getAttribute("data-exclude") ? elem.getAttribute("data-exclude").replace(/\s/g, '').split(',') : [];
-    let override = elem.getAttribute("data-override") ? JSON.parse(elem.getAttribute("data-override")) : {};
+    let excluded = elem.dataset.exclude ? elem.dataset.exclude.replace(/\s/g, '').split(',') : [];
+    let override = elem.dataset.override ? JSON.parse(elem.dataset.override) : {};
     
+    // if the page has a cookie and that app is not in this link’s list of excluded apps, update the URL
     if (cookie && !excluded.includes(cookie)) {
       let app = apps.find(app => app.slug === cookie);
       elem.href = redirectURL(elem.href, app.slug);
       elem.innerHTML = `Listen in ${app.name}`;
     }
     else {
+      // If this link has at least 1 badge, set up the modal
       if (apps.length - excluded.length > 0) {
         elem.setAttribute("aria-label", "Select a podcast app to listen in");
         elem.setAttribute("aria-haspopup", "true");
 
         elem.addEventListener("click", event => {
           event.preventDefault();
+          
+          // remove existing badges from modal and reinsert
           podlinkMain.innerHTML = "";
           badges(elem.href, override, excluded)
 
           podlinkModal.setAttribute("aria-modal", "true");
           podlinkModal.setAttribute("aria-hidden", "false");
           podlinkModal.showModal();
-          podlinkModal.focus();
         });
       }
     }

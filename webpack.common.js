@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'production',
+      title: 'podlink-embed',
     }),
   ],
   output: {
