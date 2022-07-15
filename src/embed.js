@@ -56,7 +56,7 @@ const badges = (href, override, excluded) => {
     // if the page has a cookie and that app is not in this link’s list of excluded apps, update the URL
     if (cookie && !excluded.includes(cookie)) {
       let app = apps.find(app => app.slug === cookie);
-      elem.href = redirectURL(elem.href, app.slug);
+      elem.href = (override[app.slug]) ? override[app.slug] : redirectURL(elem.href, app.slug)
       elem.innerHTML = `Listen in ${app.name}`;
     }
     else {
@@ -77,6 +77,15 @@ const badges = (href, override, excluded) => {
           podlinkModal.showModal();
         });
       }
+    }
+  }
+
+  let triggers = document.querySelectorAll('a[data-trigger]');
+  for (let link of triggers) {
+    console.log();
+    if (link.hostname="pod.link" && link.dataset.hasOwnProperty('trigger') && link.dataset.trigger != 'false') {
+      link.click();
+      break;
     }
   }
 })();

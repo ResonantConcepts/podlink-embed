@@ -11,8 +11,8 @@ let anchor = document.createElement("a");
 anchor.href = "https://pod.link/1624978968?at=1000lPBj";
 anchor.innerHTML = "Listen Now";
 anchor.setAttribute("data-exclude", "stitcher");
+anchor.setAttribute("data-trigger", "true");
 anchor.setAttribute("data-override", JSON.stringify({
-  "overcast":"overcast://x-callback-url/add?url=https://feeds.megaphone.fm/vergecast",
-  "radiopublic":"https://radiopublic.com/Vergecast"
+  "overcast":"overcast://x-callback-url/add?url=https://feeds.megaphone.fm/bth"
 }));
 document.body.appendChild(anchor);
