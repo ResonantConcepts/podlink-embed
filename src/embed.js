@@ -82,7 +82,6 @@ const badges = (href, override, excluded) => {
 
   let triggers = document.querySelectorAll('a[data-trigger]');
   for (let link of triggers) {
-    console.log();
     if (link.hostname="pod.link" && link.dataset.hasOwnProperty('trigger') && link.dataset.trigger != 'false') {
       link.click();
       break;
